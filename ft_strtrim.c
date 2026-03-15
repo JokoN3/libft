@@ -1,38 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_atoi.c                                          :+:    :+:            */
+/*   ft_strtrim.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: yoneshev <yoneshev@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2026/03/13 14:57:36 by yoneshev      #+#    #+#                 */
-/*   Updated: 2026/03/15 15:27:09 by yoneshev      ########   odam.nl         */
+/*   Created: 2026/03/15 15:38:12 by yoneshev      #+#    #+#                 */
+/*   Updated: 2026/03/15 15:38:34 by yoneshev      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *nptr)
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	long		res;
-	int			i;
-	int			sign;
+	char	*res;
+	int		start;
+	int		end;
 
-	sign = 1;
-	i = 0;
-	res = 0;
-	while ((nptr[i] == ' ' || (nptr[i] >= 9 && nptr[i] <= 13)))
-		i++;
-	if (nptr[i] == '-' || nptr[i] == '+')
-	{
-		if (nptr[i] == '-')
-			sign = -1;
-		i++;
-	}
-	while (ft_isdigit(nptr[i]))
-	{
-		res = res * 10 + (nptr[i] - '0');
-		i++;
-	}
-	return (res * sign);
+	start = 0;
+	if (!s1)
+		return (NULL);
+	while (s1[start] && ft_strchr(set, s1[start]))
+		start++;
+	end = ft_strlen(s1);
+	while (end > start && ft_strchr(set, s1[end - 1]))
+		end--;
+	res = malloc(end - start + 1);
+	if (res == NULL)
+		return (NULL);
+	ft_strlcpy(res, s1 + start, end - start + 1);
+	return (res);
 }

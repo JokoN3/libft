@@ -1,38 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_atoi.c                                          :+:    :+:            */
+/*   ft_strjoin.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: yoneshev <yoneshev@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2026/03/13 14:57:36 by yoneshev      #+#    #+#                 */
-/*   Updated: 2026/03/15 15:27:09 by yoneshev      ########   odam.nl         */
+/*   Created: 2026/03/15 15:34:27 by yoneshev      #+#    #+#                 */
+/*   Updated: 2026/03/15 15:35:56 by yoneshev      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *nptr)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	long		res;
-	int			i;
-	int			sign;
+	size_t	len;
+	char	*res;
+	char	*start;
 
-	sign = 1;
-	i = 0;
-	res = 0;
-	while ((nptr[i] == ' ' || (nptr[i] >= 9 && nptr[i] <= 13)))
-		i++;
-	if (nptr[i] == '-' || nptr[i] == '+')
-	{
-		if (nptr[i] == '-')
-			sign = -1;
-		i++;
-	}
-	while (ft_isdigit(nptr[i]))
-	{
-		res = res * 10 + (nptr[i] - '0');
-		i++;
-	}
-	return (res * sign);
+	if (!s1 && !s2)
+		return (NULL);
+	if (!s1)
+		return (ft_strdup(s2));
+	if (!s2)
+		return (ft_strdup(s1));
+	len = ft_strlen(s1) + ft_strlen(s2);
+	res = malloc(len + 1);
+	if (!res)
+		return (NULL);
+	start = res;
+	while (*s1)
+		*res++ = *s1++;
+	while (*s2)
+		*res++ = *s2++;
+	*res = '\0';
+	return (start);
 }

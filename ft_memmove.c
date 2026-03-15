@@ -1,38 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_atoi.c                                          :+:    :+:            */
+/*   !!!!!ft_memmove.c                                  :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: yoneshev <yoneshev@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2026/03/13 14:57:36 by yoneshev      #+#    #+#                 */
-/*   Updated: 2026/03/15 15:27:09 by yoneshev      ########   odam.nl         */
+/*   Created: 2026/03/10 16:35:22 by yoneshev      #+#    #+#                 */
+/*   Updated: 2026/03/15 15:05:28 by yoneshev      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *nptr)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	long		res;
-	int			i;
-	int			sign;
+	char		*p;
+	const char	*s;
 
-	sign = 1;
-	i = 0;
-	res = 0;
-	while ((nptr[i] == ' ' || (nptr[i] >= 9 && nptr[i] <= 13)))
-		i++;
-	if (nptr[i] == '-' || nptr[i] == '+')
+	if (!dest && !src)
+		return (NULL);
+	p = (char *)dest;
+	s = (const char *)src;
+	if (s > p)
 	{
-		if (nptr[i] == '-')
-			sign = -1;
-		i++;
+		while (n-- > 0)
+			*p++ = *s++;
 	}
-	while (ft_isdigit(nptr[i]))
+	else
 	{
-		res = res * 10 + (nptr[i] - '0');
-		i++;
+		p = p + n;
+		s = s + n;
+		while (n-- > 0)
+			*(--p) = *(--s);
 	}
-	return (res * sign);
+	return (dest);
 }

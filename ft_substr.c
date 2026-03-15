@@ -1,38 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_atoi.c                                          :+:    :+:            */
+/*   ft_substr.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: yoneshev <yoneshev@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2026/03/13 14:57:36 by yoneshev      #+#    #+#                 */
-/*   Updated: 2026/03/15 15:27:09 by yoneshev      ########   odam.nl         */
+/*   Created: 2026/03/15 15:30:49 by yoneshev      #+#    #+#                 */
+/*   Updated: 2026/03/15 15:33:08 by yoneshev      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *nptr)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	long		res;
-	int			i;
-	int			sign;
+	char	*res;
+	int		i;
 
-	sign = 1;
 	i = 0;
-	res = 0;
-	while ((nptr[i] == ' ' || (nptr[i] >= 9 && nptr[i] <= 13)))
+	if (s == NULL)
+		return (NULL);
+	if (start >= ft_strlen(s))
+		return (ft_strdup(""));
+	while (len-- > 0 && s[i + start])
 		i++;
-	if (nptr[i] == '-' || nptr[i] == '+')
-	{
-		if (nptr[i] == '-')
-			sign = -1;
-		i++;
-	}
-	while (ft_isdigit(nptr[i]))
-	{
-		res = res * 10 + (nptr[i] - '0');
-		i++;
-	}
-	return (res * sign);
+	s += start;
+	res = malloc(i + 1);
+	if (res == NULL)
+		return (NULL);
+	ft_strlcpy(res, s, i + 1);
+	return (res);
 }

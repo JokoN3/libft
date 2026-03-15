@@ -1,38 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_atoi.c                                          :+:    :+:            */
+/*   ft_strdup.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: yoneshev <yoneshev@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2026/03/13 14:57:36 by yoneshev      #+#    #+#                 */
-/*   Updated: 2026/03/15 15:27:09 by yoneshev      ########   odam.nl         */
+/*   Created: 2026/03/15 15:27:57 by yoneshev      #+#    #+#                 */
+/*   Updated: 2026/03/15 15:37:18 by yoneshev      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *nptr)
+char	*ft_strdup(const char *s)
 {
-	long		res;
-	int			i;
-	int			sign;
+	size_t	len;
+	char	*r;
+	char	*start;
 
-	sign = 1;
-	i = 0;
-	res = 0;
-	while ((nptr[i] == ' ' || (nptr[i] >= 9 && nptr[i] <= 13)))
-		i++;
-	if (nptr[i] == '-' || nptr[i] == '+')
+	if (s == NULL)
+		return (NULL);
+	len = ft_strlen(s);
+	r = malloc(len + 1);
+	if (!r)
+		return (NULL);
+	start = r;
+	while (*s)
 	{
-		if (nptr[i] == '-')
-			sign = -1;
-		i++;
+		*r = *s;
+		r++;
+		s++;
 	}
-	while (ft_isdigit(nptr[i]))
-	{
-		res = res * 10 + (nptr[i] - '0');
-		i++;
-	}
-	return (res * sign);
+	*r = '\0';
+	return (start);
 }
