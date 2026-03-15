@@ -1,18 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_isalnum.c                                       :+:    :+:            */
+/*   ft_lstlast.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: yoneshev <yoneshev@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2026/03/10 16:01:21 by yoneshev      #+#    #+#                 */
-/*   Updated: 2026/03/15 18:20:34 by yoneshev      ########   odam.nl         */
+/*   Created: 2026/03/15 18:02:57 by yoneshev      #+#    #+#                 */
+/*   Updated: 2026/03/15 18:03:30 by yoneshev      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isalnum(int c)
+t_list	*ft_lstlast(t_list *lst)
 {
-	return (ft_isdigit(c) || ft_isalpha(c));
+	if (!lst)
+		return (NULL);
+	while (lst->next)
+		lst = lst->next;
+	return (lst);
 }

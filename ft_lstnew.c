@@ -1,18 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_isalnum.c                                       :+:    :+:            */
+/*   ft_lstnew.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: yoneshev <yoneshev@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2026/03/10 16:01:21 by yoneshev      #+#    #+#                 */
-/*   Updated: 2026/03/15 18:20:34 by yoneshev      ########   odam.nl         */
+/*   Created: 2026/03/15 17:47:04 by yoneshev      #+#    #+#                 */
+/*   Updated: 2026/03/15 17:57:56 by yoneshev      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isalnum(int c)
+t_list	*ft_lstnew(void *content)
 {
-	return (ft_isdigit(c) || ft_isalpha(c));
+	t_list	*node;
+
+	node = malloc(sizeof(t_list));
+	if (!node)
+		return (NULL);
+	node->content = content;
+	node->next = NULL;
+	return (node);
 }
