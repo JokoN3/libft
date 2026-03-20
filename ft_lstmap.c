@@ -6,7 +6,7 @@
 /*   By: yoneshev <yoneshev@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2026/03/15 18:10:28 by yoneshev      #+#    #+#                 */
-/*   Updated: 2026/03/15 18:10:39 by yoneshev      ########   odam.nl         */
+/*   Updated: 2026/03/20 17:27:38 by yoneshev      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	t_list	*node;
 	void	*content;
 
-	if (!lst)
+	if (!lst || !f)
 		return (NULL);
 	res = NULL;
 	while (lst)
